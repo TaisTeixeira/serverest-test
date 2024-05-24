@@ -1,11 +1,13 @@
 /// <reference types ="cypress" />
+import dados from '../../fixtures/usuario-api.json'
 const urlBase = 'https://serverest.dev/'
 
 
 describe('API Produtos', () => {
-beforeEach(() => {
-    cy.token ('fabio1716393622215@teste.com', 'teste@123').as('token')
-});
+
+    beforeEach(() => {
+        cy.token(dados.email, dados.senha).as('token')
+    });
 
     it('Listar produtos com sucesso', () => {
         cy.request({
@@ -19,17 +21,17 @@ beforeEach(() => {
         })
     });
 
-    it.only('Cadastrar produto com sucesso', function () {
-        var produto = `Tais Produto${Date.now()}`
+    it('Cadastrar produto com sucesso', function () {
+        var produtoAlterado = `Tais Produto${Date.now()}`
 
         cy.request({
             method: 'POST',
             url: urlBase + 'produtos',
             body: {
-            "nome": produto,
-            "preco": 690,
-            "descricao": "Notebook hp",
-            "quantidade": 100,
+                "nome": produtoAlterado,
+                "preco": 690,
+                "descricao": "Notebook hp",
+                "quantidade": 100,
             },
             headers: {
                 authorization: this.token
@@ -40,41 +42,49 @@ beforeEach(() => {
         })
     });
 
-    it('Alterar os dados produto com sucesso', function () {
-        cy.request({
-            method: 'PUT'
-            url: urlBase + 'produtos/' + 'id', //informa ID
-            body
-            {
-            "nome": produto,
-            "preco": 690,
-            "descricao": "Notebook hp",
-            "quantidade": 100,
-            },
-            headers: {
-                authorization: this.token
-            }
-        }).then((response) => {
-            expect(response.status).to.equal(20)
-            expect(response.body.message).to.equal('Registro alterado com sucesso')
-        
+    it('Alterar dados do produto com sucesso', function () {
+        var produtoAlterado = `Produto teste ${Date.now()}`
+        cy.cadastrarProduto(this.token)
+            .then((response) => {
+                cy.log(response.body._id)
+                var id = response.body._id
+                cy.request({
+                    method: 'PUT',
+                    url: urlBase + 'produtos/' + id,
+                    body:
+                    {
+                        "nome": produtoAlterado,
+                        "preco": 100,
+                        "descricao": "Descrição alterada",
+                        "quantidade": 100
+                    },
+                    headers: {
+                        authorization: this.token
+                    }
+                }).then((response) => {
+                    expect(response.status).to.equal(200)
+                    expect(response.body.message).to.equal('Registro alterado com sucesso')
+                })
+            })
     });
 
     it('Exclusão com sucesso', function () {
-        cy.cadastrarProduto(this.token).then((response) => {
-            cy.log(response.body._id)
-            var id = response.body._id
-            cy.request({
-                method: 'DELETE'
-                url: urlBase + 'Produtos/' + 'id' //informar ID
-    
-            }).then((response) => {
-                expect(response.status).to.equal(20)
-                expect(response.body.message).to.equal('Registro excluído com sucesso')
-            
-        });
-        })
+        cy.cadastrarProduto(this.token)
+            .then((response) => {
+                cy.log(response.body._id)
+                var id = response.body._id
+                cy.request({
+                    method: 'DELETE',
+                    url: urlBase + 'Produtos/' + id, 
+                    headers: {
+                        authorization: this.token
+                    }
 
+                }).then((response) => {
+                    expect(response.status).to.equal(200)
+                    expect(response.body.message).to.equal('Registro excluído com sucesso')
+                })
 
-    
+            })
+    });
 });
