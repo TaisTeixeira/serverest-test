@@ -32,7 +32,6 @@ Cypress.Commands.add('login', (email, senha) => {
     cy.wait(1000)
  })
 
-
  Cypress.Commands.add('CadastroUsuarioAdmin', (nome, email, senha) => {
     cy.visit('cadastrarusuarios')
     cy.get('[data-testid="nome"]', ).clear().type(nome)

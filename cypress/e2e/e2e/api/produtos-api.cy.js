@@ -1,7 +1,5 @@
-/// <reference types ="cypress" />
-import dados from '../../fixtures/usuario-api.json'
+import dados from '../../../fixtures/usuario-api.json'
 const urlBase = 'https://serverest.dev/'
-
 
 describe('API Produtos', () => {
 

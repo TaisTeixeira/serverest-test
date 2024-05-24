@@ -1,0 +1,22 @@
+[
+    {   
+        "nome": "Fábio Teste",
+        "email" : "fabio@araujo.com",
+        "senha": "teste@123"
+    },
+    {   
+        "nome": "Ana Teste",
+        "email" : "ana@teste.com",
+        "senha": "teste@123"
+    },
+    {   
+        "nome": "Felipe Teste",
+        "email" : "felipe@teste.com",
+        "senha": "teste@123"
+    },
+    {   
+        "nome": "Gisele Teste",
+        "email" : "gisele@teste.com",
+        "senha": "teste@123"
+    }
+]
