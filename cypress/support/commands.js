@@ -1,4 +1,4 @@
-// ***********************************************
+//**********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
 // existing commands.
@@ -22,7 +22,6 @@
 //
 //
 // -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 Cypress.Commands.add('login', (email, senha) => { 
     cy.visit('login')
@@ -31,6 +30,7 @@ Cypress.Commands.add('login', (email, senha) => {
     cy.get('[data-testid="entrar"]').click()
     cy.wait(1000)
  })
+
 
  Cypress.Commands.add('CadastroUsuarioAdmin', (nome, email, senha) => {
     cy.visit('cadastrarusuarios')
@@ -52,7 +52,7 @@ Cypress.Commands.add('login', (email, senha) => {
  Cypress.Commands.add('token', (email, senha) => {
       cy.request({
          method: 'POST', 
-         url: 'https://serverest.dev/',
+         url: 'http://localhost:3000/login',
          body: 
             {
                "email": email,
@@ -66,14 +66,14 @@ Cypress.Commands.add('login', (email, senha) => {
 
 
  Cypress.Commands.add('cadastrarProduto', (tkn) =>{
-   var produtoAlterado = `Tais Produto${Date.now()}`
+   var produto = `Produto teste ${Date.now()}`
    cy.request({
        method: 'POST',
-       url:  'https://serverest.dev/produtos',
+       url:  'http://localhost:3000/produtos',
        body: {
-           "nome": produtoAlterado,
+           "nome": produto,
            "preco": 1001,
-           "descricao": "customizados...",
+           "descricao": "Comandos customizados...",
            "quantidade": 1001
          },
          headers: {

@@ -1,6 +1,5 @@
 /// <reference types="cypress" />
-import cadastroPage from '../../support/pages/cadastro.page';
-import CadastroPage from '../../support/pages/cadastro.page'
+import CadastroPage from '../../support/page/cadastro.page'
 
 describe('Funcionalidade: Cadastro - Usando Pages Objects', () => {
     beforeEach(() => {

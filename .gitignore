@@ -134,3 +134,4 @@ logs
 node_modules/
 videos/
 screenshots/
+allure-results/

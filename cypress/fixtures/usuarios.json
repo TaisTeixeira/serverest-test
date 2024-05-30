@@ -1,22 +1,22 @@
 [
-    {   
-        "nome": "Fábio Teste",
-        "email" : "fabio@araujo.com",
+    {
+        "nome": "Fulano da Silva",
+        "email": "fulano@qa.com",
+        "senha": "teste"
+    },
+    {
+        "nome": "Tais Silva",
+        "email": "taissilv@qa.com.br",
+        "senha": "teste123"
+    },
+    {
+        "nome": "Tais da silva QA",
+        "email": "silvatais@qa.com.br",
         "senha": "teste@123"
     },
-    {   
-        "nome": "Ana Teste",
-        "email" : "ana@teste.com",
-        "senha": "teste@123"
-    },
-    {   
-        "nome": "Felipe Teste",
-        "email" : "felipe@teste.com",
-        "senha": "teste@123"
-    },
-    {   
-        "nome": "Gisele Teste",
-        "email" : "gisele@teste.com",
+    {
+        "nome": "Teixeira QA",
+        "email": "teixeira@qa.com.br",
         "senha": "teste@123"
     }
 ]
